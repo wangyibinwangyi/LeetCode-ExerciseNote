@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var numIslands = function(grid) {
+      let islandNumber = 0;
+      let widthLength = grid.length;
+      function downplayIsland(i,j,verticalLength){
+        if(i<0||j<0||i>=widthLength||j>=verticalLength||grid[i][j]==='0'){
+          return;
+        }
+        grid[i][j] = '0';
+        downplayIsland(i-1,j,verticalLength);
+        downplayIsland(i,j-1,verticalLength);
+        downplayIsland(i+1,j,verticalLength);
+        downplayIsland(i,j+1,verticalLength);
+      }
+      for(let i = 0;i<widthLength;i++){
+        let verticalLength = grid[i].length;
+        for(let j = 0;j<verticalLength;j++){
+          if(grid[i][j]==='1'){
+            islandNumber++;
+            downplayIsland(i,j,verticalLength)
+          }
+        }
+      }
+      return islandNumber
+  };
+    console.log(numIslands([["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]))
+    </script>
+</body>
+
+</html>

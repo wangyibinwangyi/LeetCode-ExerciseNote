@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    /**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var singleNumbers = function(nums) {
+  let result = [];
+  for(let i =0;i<nums.length;i++){
+    if(result[nums[i]]){
+      delete result[nums[i]];
+    }else{
+      result[nums[i]] = nums[i]
+    }
+  }
+  return Object.keys(result)
+};
+    console.log(singleNumbers([4,1,4,6]))
+    </script>
+</body>
+
+</html>

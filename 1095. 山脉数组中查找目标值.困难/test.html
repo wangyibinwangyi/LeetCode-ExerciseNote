@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    /**
+ * // This is the MountainArray's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * function MountainArray() {
+ *     @param {number} index
+ *     @return {number}
+ *     this.get = function(index) {
+ *         ...
+ *     };
+ *
+ *     @return {number}
+ *     this.length = function() {
+ *         ...
+ *     };
+ * };
+ */
+
+/**
+ * @param {number} target
+ * @param {MountainArray} mountainArr
+ * @return {number}
+ */
+  function MountainArray(arr) {
+      let Arr=arr;
+      this.get = function(index) {
+          return Arr[index]
+      };
+      this.length = function() {
+          return Arr.length;
+      };
+  };
+var findInMountainArray = function(target, mountainArr) {
+  //查找峰值
+  
+    let arrLength = mountainArr.length()-1;
+    let left = 0;
+    let right = arrLength;
+    while(left<right){
+      const mid = (left+right)/2|0;
+      if(mountainArr.get(mid)>=mountainArr.get(mid+1)){
+        //峰值一定在左侧
+        right = mid;
+      }else{
+        //峰值一定在右侧
+        left = mid + 1;
+      }
+    }
+    const mountainTop = left;
+    const index = searchTarget(mountainArr,target,0,mountainTop,v=>v)
+    if(index!=-1)return index;
+    return searchTarget(mountainArr,target,mountainTop+1,arrLength,v=>-v)
+    
+    function searchTarget(list,target,l,r,fn){
+      target = fn(target);
+      while(l<=r){
+        const mid = (l+r)/2|0;
+        const cur = fn(list.get(mid));
+        if(cur === target)return mid;
+        if(cur < target){
+          l = mid +1;
+        }else{
+          r = mid -1;
+        }
+      }
+      return -1;
+    }
+};
+let arr = new MountainArray([1,5,2]);
+    console.log(findInMountainArray(2,arr))
+    </script>
+</body>
+
+</html>

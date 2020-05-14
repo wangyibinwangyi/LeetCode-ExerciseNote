@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    /**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums) {
+  let res = 0;
+  for(let key in nums){
+    res ^= nums[key]
+  }
+  return res;
+};
+    console.log(singleNumber([2,2,1]))
+    </script>
+</body>
+
+</html>
